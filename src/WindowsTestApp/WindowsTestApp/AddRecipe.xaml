@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WindowsTestApp.AddRecipe"
+             Title="Lägg till">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="checkred" Clicked="SaveRecipe"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Grid HeightRequest="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="210" />
+                    <ColumnDefinition Width="*" />
+                    
+                </Grid.ColumnDefinitions>
+                <Entry Placeholder="Namn*"
+                   Keyboard="Chat"
+                   Margin="20,20,0,20"
+                   Text="{Binding Name}"/>
+                <Entry Placeholder="Tidsåtgång"
+                   Grid.Column="1"
+                   Margin="{StaticResource PageMargin}"
+                   Keyboard="Numeric"
+                   Text="{Binding CookingTime}"/>
+            </Grid>
+            <Editor Placeholder="Instruktioner*"
+                    Keyboard="Chat"
+                   HeightRequest="100"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="{StaticResource PageMargin}"
+                   Text="{Binding Description}"/>
+           
+            <Grid HeightRequest="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Entry Placeholder="Ingrediens"
+                        Margin="20,20,0,20"
+                        x:Name="ingredient"
+                       Keyboard="Chat"
+                        Text="{Binding Ingredient.IngredientName}"
+                        />
+                <Entry Placeholder="Gram"
+                        Margin="20,20,0,20"
+                        Grid.Column="1"
+                        MaxLength="4"
+                        x:Name="gram"
+                        Keyboard="Numeric"
+                        Text="{Binding Ingredient.Grams}"
+                        
+                        />
+                <ImageButton 
+                        Grid.Column="2"
+                        Clicked="AddIngredients"
+                        Source="add"
+                        BackgroundColor="Transparent"
+                        Aspect="AspectFit"
+                        Margin="{StaticResource PageMargin}"/>
+            </Grid>
+
+            <ContentView>
+                <ListView x:Name="listview"
+                           Margin="{StaticResource PageMargin}"
+                           HasUnevenRows="True"
+                           >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0"
+                                     >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                   
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="2"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Source="circle"
+                                           Margin="0,0,20,0"
+                                            />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding IngredientName}"
+                                           FontAttributes="Bold" 
+                                           VerticalOptions="Start"
+                                           Padding="0,5,0,0"/>
+                                    <Label 
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding Grams, StringFormat= '{0} gram'}"
+                                           VerticalOptions="End"
+                                           Padding="0,0,0,5"/>
+                                    <Button 
+                                           Grid.RowSpan="2"
+                                           Grid.Column="2"
+                                           FontSize="10"
+                                           Text="Ta bort"
+                                           TextColor="Red"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,20,0"
+                                           Clicked="Remove_Item"
+                                           BackgroundColor="Transparent"
+                                           HorizontalOptions="End"                                           
+                                            />
+                                </Grid>
+                            </ViewCell>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

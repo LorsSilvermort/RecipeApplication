@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WindowsTestApp.ListRecipes"
+             Title="Listar Recept"
+             BackgroundColor="{DynamicResource PrimaryDarkColor}">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="borderbottom" BackgroundColor="{DynamicResource SecondaryColor}"
+                   HeightRequest="5"/>
+            <ListView x:Name="listview"
+                           Margin="{StaticResource ListMargin}"
+                           HasUnevenRows="True"
+                           ItemSelected="OnListViewItemSelected"
+                           SelectionMode="Single"
+                           SeparatorVisibility="Default" 
+                           SeparatorColor="{DynamicResource SecondaryColor}"
+                           >
+       
+        <ListView.ItemTemplate>
+        
+        <DataTemplate>
+                <ViewCell >
+                    <Grid Padding="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+                       
+                        <Label 
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="Medium"
+                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                           TextDecorations="Underline"
+                                           VerticalOptions="Start"
+                                           Padding="0,0,0,0"/>
+                        <Label 
+                                           Grid.Row="1"
+                                           Opacity="0.6"
+                                           FontSize="Micro"
+                                           Text="{Binding Date, StringFormat= 'Skapad: {0}'}"
+                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                           VerticalOptions="End"
+                                           />
+                        <Label 
+                                           Grid.Row="2"
+                                           Opacity="0.6"
+                                           FontSize="Micro"
+                                           Text="{Binding Ingredients.Count, StringFormat= 'Antal ingredienser: {0}'}"
+                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                           VerticalOptions="End"
+                                           Padding="0,0,0,5"/>
+                        <Button 
+                                           Grid.RowSpan="3"
+                                           Grid.Column="2"
+                                           FontSize="Medium"
+                                           Text="*"
+                                           TextColor="Red"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,20,0"
+                                           BackgroundColor="Transparent"
+                                           HorizontalOptions="End"                                           
+                                            />
+                    </Grid>
+                </ViewCell>
+
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

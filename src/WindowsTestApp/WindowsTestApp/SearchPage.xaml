@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WindowsTestApp.SearchPage"
+             Title="Sök recept"
+             BackgroundColor="{DynamicResource PrimaryDarkColor}">
+    <ContentPage.Resources>
+        <Style TargetType="{x:Type Entry}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource PrimaryDarkColor}"/>
+            <Setter Property="TextColor"
+                    Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="FontSize"
+                    Value="20"/>
+            <Setter Property="PlaceholderColor"
+                    Value="{DynamicResource SecondaryLightColor}"/>
+        </Style>
+        <Style TargetType="Button" ApplyToDerivedTypes="True" CanCascade="True">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="CornerRadius" Value="30"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="add" Clicked="AddRecipe"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="{StaticResource PageMargin}">
+            <Entry Placeholder="Sök recept.."
+                   HeightRequest="100"
+                   x:Name="searchBox"
+                   Keyboard="Chat"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+           
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="SÖK"
+                        TextColor="{DynamicResource PrimaryDarkColor}"
+                        Clicked="SearchRecipe"
+                    />
+                <Button Grid.Column="1"
+                    Clicked="ListAll"
+                    BackgroundColor="Transparent"
+                    BorderColor="{DynamicResource SecondaryColor}"
+                    BorderWidth="3"
+                    TextColor="{DynamicResource SecondaryColor}"
+                    Text="VISA ALLA"/>
+            </Grid>
+            <ActivityIndicator
+                Color="{DynamicResource SecondaryColor}"
+                IsRunning="false"
+                HeightRequest="100"
+                x:Name="running"
+              />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

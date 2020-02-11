@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WindowsTestApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PageBackgroundColor">White</Color>
+            <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
+            <Color x:Key="PrimaryColor">#386895</Color>
+            <Color x:Key="PrimaryDarkColor">#273B7A</Color>
+            <Color x:Key="SecondaryColor">#F37547</Color>
+            <Color x:Key="SecondaryLightColor">#b05531</Color>
+            <Color x:Key="PrimaryTextColor">White</Color>
+            <Color x:Key="SecondaryTextColor">Black</Color>
+            <Color x:Key="TransparentColor">Transparent</Color>
+        </ResourceDictionary>
+        
+        <Thickness x:Key="PageMargin" Left="20" Top="20" Right="20" Bottom="20"/>
+        <Thickness x:Key="ListMargin" Left="20" Top="0" Right="20" Bottom="20"/>
+        <Color x:Key="AppBackgroundColor">WhiteSmoke</Color>
+        <Color x:Key="iOSNavigationBarColor">WhiteSmoke</Color>
+        <Color x:Key="AndroidNavigationBarColor">#386895</Color>
+        <Color x:Key="iOSNavigationBarTextColor">White</Color>
+        <Color x:Key="AndroidNavigationBarTextColor">White</Color>
+        
+        <Style TargetType="{x:Type NavigationPage}">
+            <Setter Property="BarBackgroundColor"
+                    Value="{OnPlatform iOS={DynamicResource PrimaryDarkColor},
+                                        Android={DynamicResource PrimaryDarkColor}}"/>
+            
+            
+            <Setter Property="BarTextColor"
+                    Value="{OnPlatform iOS={DynamicResource PrimaryTextColor},
+                                       Android={DynamicResource PrimaryTextColor}}" />
+        </Style>
+        <Style TargetType="{x:Type ContentPage}" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor"
+                    Value="{DynamicResource PageBackgroundColor}"/>
+
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource SecondaryTextColor}"/>
+            <Setter Property="Opacity"
+                    Value="0.75"/>
+
+
+        </Style>
+        
+        
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WindowsTestApp.RecipeView"
+             Title="Lägg till">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ta bort" />
+        <ToolbarItem Text="Redigera" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Grid HeightRequest="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label 
+                   FontSize="Large"
+                   Margin="20,20,0,0"
+                   Text="{Binding Name}"/>
+                <Label
+                   Grid.Row="1"
+                   Margin="20,5,0,0"
+                   FontSize="Medium"
+                   Text="{Binding CookingTime, StringFormat='Tidsåtgång: {0}'}"/>
+            </Grid>
+            <Label Text="Instruktioner"
+                   FontSize="Medium"
+                   Margin="20,5,20,0"
+                   FontAttributes="Bold"></Label>
+            <Label  
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="20,5,20,20"
+                   Text="{Binding Description}"/>
+            <Slider VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="10,0,0,0"
+                    x:Name="slider"
+                    Maximum="100"
+                    Minimum="1"
+                    Value="1"
+                    WidthRequest="330"
+                    DragCompleted="slider_DragCompleted"
+                    ValueChanged="slider_ValueChanged"
+                    MinimumTrackColor="{DynamicResource SecondaryColor}"
+                    MaximumTrackColor="{DynamicResource PrimaryColor}"
+                    ThumbColor="{DynamicResource PrimaryDarkColor}"/>
+            <Label Text="{Binding Source={x:Reference slider},
+                              Path=Value,
+                              StringFormat='Antal portioner: {0}'}"
+                   Margin="20,0,0,0"
+                   FontSize="Micro"/>
+       
+
+            <ContentView>
+                <ListView x:Name="listview"
+                           Margin="{StaticResource PageMargin}"
+                           HasUnevenRows="True"
+                           >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0"
+                                     >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="2"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Source="circle"
+                                           Margin="0,0,20,0"
+                                            />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding IngredientName}"
+                                           FontAttributes="Bold" 
+                                           VerticalOptions="Start"
+                                           Padding="0,5,0,0"/>
+                                    <Label 
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding Grams, StringFormat= '{0} gram'}"
+                                           VerticalOptions="End"
+                                           Padding="0,0,0,5"/>
+                                    <Button 
+                                           Grid.RowSpan="2"
+                                           Grid.Column="2"
+                                           FontSize="10"
+                                           Text="Ta bort"
+                                           TextColor="Red"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,20,0"
+                                           
+                                           BackgroundColor="Transparent"
+                                           HorizontalOptions="End"                                           
+                                            />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
